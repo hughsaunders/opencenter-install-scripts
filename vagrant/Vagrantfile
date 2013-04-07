@@ -8,7 +8,7 @@ server_ip = '172.20.0.10'
 # forwards use the same port on gues ant host
 instances = [
   { :name => 'server', :roles => ['server','dashboard'], :ips => [server_ip], 
-    :forwards => [8080, 3000], :source_vm => 'server'},
+    :forwards => [8080, 3000]},
   { :name => 'chef', :roles => ['agent'], :ips => ['172.20.0.11'], :source_vm => 'server'},
   { :name => 'controller', :roles => ['agent'], :ips => ['172.20.0.12',
     '172.21.0.12'], :source_vm => 'server'},
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
-    #vb.gui = true
+    vb.gui = true
   end
 
   #Default is 2200..something, but port 2200 is used by forescout NAC agent. 
